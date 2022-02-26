@@ -1,0 +1,65 @@
+<p>user-registration works!</p>
+<div class="container">
+    <table class="table table-responsive" >
+        <thead>
+            <tr>
+                <th>UserId</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>UserName </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let u of allUsers |async;">
+                <td> {{u.id}}</td>
+                <td> {{u.Name}}</td>
+                <td> {{u.Email}}</td>
+                <td> {{u.Genders}}</td>
+                <td> {{u.Username}}</td>
+            </tr>
+        </tbody>
+
+    </table>
+    <div class="container">      
+        <div class="row">    
+            <div class="form_bg">                
+                <form [formGroup]="userForm" (ngSubmit)="onSubmit()">    
+                     <h2 class="text-center">Registration page</h2>  
+                    <br/>  
+                    <div class="form-group"> 
+                        <label for="name">Name</label>   
+                        <input type="text" class="form-control"  
+                        formControlName="Name">     
+                    </div> 
+                    <div class="radio" *ngFor="let gender of Genders">
+                    <label>
+                      <input formControlName="Gender"
+                        type="radio"
+                        [value]="gender">{{ gender }}
+                    </label>
+                  </div>
+          
+                    <div class="form-group"> 
+                        <label for="Email">Email</label>   
+                        <input type="text" class="form-control"  
+                        placeholder="sample@example.com" formControlName="Email">     
+                    </div>     
+                    <div class="form-group"> 
+                        <label for="username">UserName</label>
+                        <input type="text" class="form-control" id="username" 
+                        formControlName="Username">    
+                       </div>     
+                       <div class="form-group"> 
+                        <label for="password">Password</label>
+                        <input type="text" class="form-control" id="password" 
+                        formControlName="Password">    
+                       </div> 
+                     
+                    <br/>     
+                    <div class="align-center">  
+                        <button type="submit" 
+                        class="btn btn-default" id="register">Register</button>   
+                    </div>  
+                    </form>
+            </div></div>
