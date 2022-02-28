@@ -3,10 +3,10 @@ import { Component, OnInit } from '@angular/core';
 //parts of your application. They are used frequently in Angular and are 
 //the recommended technique for event handling, 
 //asynchronous programming, and handling multiple values.
-import { Observable } from 'rxjs';
+ import { Observable } from 'rxjs';
 //import user.ts
 import { User } from '../user';
-//import user-service.service.ts
+//importuser-service.service.ts
 import { UserServiceService } from '../user-service.service';
 //import for Form designing in Angular
 import { FormGroup,FormControl } from '@angular/forms';
@@ -22,9 +22,8 @@ export class UserRegistrationComponent implements OnInit
   allUsers :Observable<User[]>; 
   userForm :FormGroup;
   dataSaved = false;
-
   userIdUpdate = null;
-  massage = null;
+  message = null;
   //inheriting UserServiceService from user-service.service.ts
   constructor(private userservice:UserServiceService)
   {
@@ -49,17 +48,17 @@ export class UserRegistrationComponent implements OnInit
       this.userservice.createUser(user).subscribe(
         () => {
           this.dataSaved = true;
-          this.massage = 'Record saved Successfully';
+          this.message = 'Record saved Successfully';
           this.loadAllUsers();
-          this.userIdUpdate = null;
+          this.userIdUpdate = 6;
           this.userForm.reset();
         }
       );
     } else {
       user.id = this.userIdUpdate;
-      this.userservice.updateEmployee(user).subscribe(() => {
+      this.userservice.updateUser(user).subscribe(() => {
         this.dataSaved = true;
-        this.massage = 'Record Updated Successfully';
+        this.message = 'Record Updated Successfully';
         this.loadAllUsers();
         this.userIdUpdate = null;
         this.userForm.reset();
@@ -80,5 +79,37 @@ export class UserRegistrationComponent implements OnInit
   loadAllUsers()
   {
     this.allUsers=this.userservice.getAllUsers();
+  }
+  loadUserToEdit(userId: number) 
+  {
+      this.userservice.getUserById(userId).subscribe(user => 
+      {
+      this.message = null;
+      this.dataSaved = false;
+      this.userIdUpdate = user.id;
+      this.userForm.controls['Name'].setValue(user.Name);
+      this.userForm.controls['Email'].setValue(user.Email);
+      this.userForm.controls['Gender'].setValue(user.Gender);
+      this.userForm.controls['Username'].setValue(user.Username);
+      this.userForm.controls['Password'].setValue(user.Password);
+    });
+
+  }
+  deleteUser(userId: number) {
+    if (confirm("Are you sure you want to delete this ?")) {  
+    this.userservice.deleteUserById(userId).subscribe(() => {
+      this.dataSaved = true;
+      this.message = 'Record Deleted Succefully';
+      this.loadAllUsers();
+      this.userIdUpdate = null;
+      this.userForm.reset();
+
+    });
+  }
+}
+  resetForm() {
+    this.userForm.reset();
+    this.message = null;
+    this.dataSaved = false;
   }
 }

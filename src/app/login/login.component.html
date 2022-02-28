@@ -2,24 +2,24 @@
 <div class="container">      
       <div class="row">    
           <div class="form_bg">
-              <!-- #regForm='ngForm' (ngSubmit)="Register(regForm)-->
-              <form>    
-                   <h2 class="text-center">Registration page</h2>  
+              <!-- -->
+              <form [formGroup]='userForm' (ngSubmit)="onSubmit()">    
+                   <h2 class="text-center">Login page</h2>  
                   <br/>  
                
                   <div class="form-group">    
                       <input type="text" class="form-control"  
-                      placeholder="User Name" name="username" ngModel >     
+                      placeholder="User Name" name="username">     
                   </div>     
                   <div class="form-group"> 
                       <input type="password" class="form-control" id="password" 
-                      placeholder="password" name="password" ngModel>    
+                      placeholder="password" name="password">    
                      </div>     
                    <div class="form-group"> 
                     </div>    
                   <br/>     
                   <div class="align-center">  
-                      <button type="submit" class="btn btn-default" id="register">Register</button>   
+                      <button type="submit" class="btn btn-default" id="login">Login</button>   
                   </div>  
                   </form>
           </div></div>

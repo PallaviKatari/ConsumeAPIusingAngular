@@ -1,26 +1,4 @@
-<!--Registration Form-->
-<div class="container">
-    <!--Consuming Web API and displaying in the table (READ OPERATION -> GET)-->
-    <table class="table table-responsive" >
-        <thead>
-            <tr>
-                <th>UserId</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Gender</th>
-                <th>UserName </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let u of allUsers |async;">
-                <td> {{u.id}}</td>
-                <td> {{u.Name}}</td>
-                <td> {{u.Email}}</td>
-                <td> {{u.Gender}}</td>
-                <td> {{u.Username}}</td>
-            </tr>
-        </tbody>
-    </table>
+<!--ANGULAR CRUD-->
     <!--Creating a user using Web API (Create Operation -> POST)-->
     <div class="container">      
         <div class="row">    
@@ -59,8 +37,44 @@
                     <br/>     
                     <div class="align-center">  
                         <button type="submit" 
-                        class="btn btn-primary" id="register">Register</button>   
+                        class="btn btn-primary" id="register">Register</button> 
+                        <br><br> 
+                        <button type="reset" class="btn btn-primary"
+                        (click)="resetForm()">Reset</button> 
                     </div>  
                 </form>
             </div>
         </div>
+        <br>
+        <br>
+        <!--Consuming Web API and displaying in the table (READ OPERATION -> GET)-->
+        <div class="container">
+            <table class="table table-responsive" >
+                <thead>
+                    <tr>
+                        <th>UserId</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Gender</th>
+                        <th>UserName </th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let u of allUsers |async;">
+                        <td> {{u.id}}</td>
+                        <td> {{u.Name}}</td>
+                        <td> {{u.Email}}</td>
+                        <td> {{u.Gender}}</td>
+                        <td> {{u.Username}}</td>
+                        <td>
+                            <button type="button" class="btn btn-info" Tooltip="Click Edit Button" (click)="loadUserToEdit(u.id)">Edit</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger" matTooltip="Click Delete Button" (click)="deleteUser(u.id)">Delete</button>
+                        </td>     
+                    </tr>
+                </tbody>
+            </table>
+
