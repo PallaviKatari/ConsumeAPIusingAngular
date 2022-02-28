@@ -39,7 +39,7 @@ export class UserRegistrationComponent implements OnInit
     this.CreateUser(user);
     this.userForm.reset();
   }
-  //create a function onSubmit CreateUser
+  //create a function CreateUser for registration of a new user
   CreateUser(user: User) {
     if (this.userIdUpdate == null) {
       //subscribe() is a method on the Observable type. The Observable type is a 
@@ -80,6 +80,7 @@ export class UserRegistrationComponent implements OnInit
   {
     this.allUsers=this.userservice.getAllUsers();
   }
+  //create a function loadUserToEdit to update the details of existing user
   loadUserToEdit(userId: number) 
   {
       this.userservice.getUserById(userId).subscribe(user => 
@@ -95,6 +96,7 @@ export class UserRegistrationComponent implements OnInit
     });
 
   }
+  //create a function deleteUser to delete an existing user
   deleteUser(userId: number) {
     if (confirm("Are you sure you want to delete this ?")) {  
     this.userservice.deleteUserById(userId).subscribe(() => {
