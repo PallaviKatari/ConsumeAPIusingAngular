@@ -3,17 +3,17 @@
       <div class="row">    
           <div class="form_bg">
               <!-- -->
-              <form [formGroup]='userForm' (ngSubmit)="onSubmit()">    
+              <form [formGroup]="userForm" (ngSubmit)="onSubmit()">    
                    <h2 class="text-center">Login page</h2>  
                   <br/>  
                
                   <div class="form-group">    
                       <input type="text" class="form-control"  
-                      placeholder="User Name" name="username">     
+                      placeholder="User Name" name="username" formControlName="Username"  >     
                   </div>     
                   <div class="form-group"> 
                       <input type="password" class="form-control" id="password" 
-                      placeholder="password" name="password">    
+                      placeholder="password" name="password" formControlName="Password">    
                      </div>     
                    <div class="form-group"> 
                     </div>    

@@ -11,6 +11,9 @@ import { User } from './user';
   providedIn: 'root'
 })
 export class UserServiceService {
+  onSubmit() {
+    throw new Error('Method not implemented.');
+  }
 //asp.net web api (the api should be running while consuming from Angular)
   url = 'https://localhost:44352/Api/UserRegistrations';  
   //Will invoke UserRegistrationsController->GetUserRegistrations()
@@ -38,6 +41,13 @@ export class UserServiceService {
 	  deleteUserById(userid:number): Observable<number> {  
 	    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };  
 	    return this.http.delete<number>(this.url + '/DeleteUserDetails?id=' +userid,  
+	 httpOptions);  
+	  }  
+
+	   //Will invoke UserRegistrationsController->DeleteUserRegistration
+	  Login(Username:string,Password:string): Observable<User[]> {  
+	    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };  
+	    return this.http.request<User[]>(this.url + '/UserLogin?Username=&Password=' +Username,Password,  
 	 httpOptions);  
 	  }  
 

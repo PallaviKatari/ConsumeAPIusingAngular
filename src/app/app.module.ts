@@ -9,7 +9,7 @@ import { UserRegistrationComponent } from './user-registration/user-registration
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
-
+import { AngularRaveModule } from 'angular-rave';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +21,8 @@ import { LoginComponent } from './login/login.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularRaveModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
